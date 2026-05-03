@@ -1,0 +1,36 @@
+# ============================================
+# FEVER Urdu Hallucination Detector
+# Python Dependencies
+# ============================================
+
+# --- Deep Learning Framework ---
+# NOTE: PyTorch with CUDA must be installed SEPARATELY:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+# --- Hugging Face Ecosystem ---
+transformers>=4.40.0
+datasets>=2.19.0
+accelerate>=0.30.0
+
+# --- Translation & Transliteration ---
+deep-translator>=1.11.4
+indic-transliteration>=2.3.0
+
+# --- Data Processing ---
+pandas>=2.2.0
+numpy>=1.26.0
+tqdm>=4.66.0
+
+# --- Machine Learning & Metrics ---
+scikit-learn>=1.4.0
+
+# --- Visualization ---
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# --- Utilities ---
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# --- Notebooks (install separately if Long Path error occurs) ---
+# pip install jupyter ipykernel

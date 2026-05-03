@@ -1,0 +1,42 @@
+# ============================================
+# Git Ignore — FEVER Urdu Hallucination Detector
+# ============================================
+
+# --- Large Data (do NOT commit) ---
+data/raw/
+data/wiki_dump/
+data/interim/
+data/final/
+
+# --- Model Checkpoints (2+ GB) ---
+models/
+
+# --- Evaluation Outputs ---
+confusion_matrix_*.png
+errors_*.csv
+
+# --- Environment & Secrets ---
+.env
+Hallucination_detector/
+venv/
+.venv/
+
+# --- Python Cache ---
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# --- Jupyter Notebook Checkpoints ---
+.ipynb_checkpoints/
+
+# --- IDE & Tools ---
+.vscode/
+.idea/
+.gemini/
+
+# --- OS ---
+Thumbs.db
+.DS_Store
