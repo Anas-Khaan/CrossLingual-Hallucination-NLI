@@ -601,4 +601,35 @@ main.py (entry point)
 
 ---
 
+## 12. Recent Progress: Pure Urdu Fine-tuning & Zero-Shot XNLI Evaluation
+
+### 12.1 Dataset Shift to Pure Urdu (`new_data/`)
+- Created a **20,000-sample purely Urdu dataset** (12k train, 4k val, 4k test) from FEVER to train the model without language leakage.
+- Created script `prepare_new_data.py` to handle sampling and Google Translation into purely Urdu script.
+- Also downloaded the massive **XNLI Training dataset** (~392k samples) and filtered out Roman/Code-Mixed sentences via `src/split_urdu_scripts.py`, leaving **372,316 Pure Urdu samples** for out-of-domain evaluation.
+
+### 12.2 Model Training Updates (`train_new.py`)
+- Fine-tuned **XLM-RoBERTa-Large** exclusively on the 12k purely Urdu FEVER samples.
+- **Fixed Class Imbalance:** We successfully resolved the issue where the model failed to predict the "Not Supported" class by implementing a **class-weighted loss function** in PyTorch (`CrossEntropyLoss(weight=class_weights)`).
+
+### 12.3 Evaluation Results (`before_evaluation_results.md`)
+- **In-Domain (FEVER Urdu Test Set - 4k samples):** 
+  - Accuracy: **92.70%** | Macro F1: **0.9245**
+  - The model performs exceptionally well on fact-checking claims matching its training domain.
+- **Cross-Domain Zero-Shot (XNLI Pure Urdu - 372k samples):**
+  - Accuracy: **40.70%** | Macro F1: **0.3645**
+  - Massive domain shift observed. The model completely fails on the "Not Enough Info" (Neutral) class in XNLI (Recall: 0.08) because XNLI measures general inference/neutrality, while FEVER measures strict encyclopedic fact verification.
+
+### 12.4 Visualizations (`generate_visuals.py`)
+- Added visualization scripts to generate comparative charts in `reports/figures/`:
+  - `confusion_matrices_comparison.png`
+  - `per_class_f1_comparison.png`
+
+### 12.5 Next Steps for Future Sessions
+- We are well positioned to publish novel research. Potential directions include:
+  1. **Domain Adaptation:** Few-shot fine-tuning the FEVER model on a small subset of XNLI to bridge the gap between Fact-Checking and General NLI.
+  2. **Cross-Script Zero-Shot:** Evaluating this purely Urdu trained model on the Roman Urdu dataset to test script-agnostic learning.
+
+---
+
 *End of Conversation Log*
